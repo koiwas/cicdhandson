@@ -1,6 +1,6 @@
 package main
 
-improt (
+import (
 	"fmt"
 	"net/http"
 
@@ -17,5 +17,5 @@ func main() {
 }
 
 func makeGreeting(name string) string {
-	retrun fmt.Sprintf("Hello", %d", name)
+	retrun fmt.Sprintf("Hello", %s", name)
 }

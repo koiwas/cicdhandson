@@ -7,7 +7,7 @@ import (
 func TestMakeGreeting(t *testing.T) {
 	want := "Hello, Taro"
 	got := makeGreeting("Taro")
-	if go != want {
+	if got != want {
 		t.Errorf("got = %s; want %s", got, want)
 	}
 }
