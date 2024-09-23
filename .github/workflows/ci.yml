@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    name: ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウトする
+        uses: actions/checkout@v4
+      - name: Goの環境をセットアップする
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.22.2"
+      - name: フォーマットを実行する
+        run: test -z $(gofmt -l .)
+      - name: 静的解析を実行する
+        run: go vet ./...
+      - name: テストを実行する
+        run: go test
+      - name: ビルドを実行する
+        run: go build .
