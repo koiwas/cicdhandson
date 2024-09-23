@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/git-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -17,5 +17,5 @@ func main() {
 }
 
 func makeGreeting(name string) string {
-	retrun fmt.Sprintf("Hello", %s", name)
+	return fmt.Sprintf("Hello", %s", name)
 }
