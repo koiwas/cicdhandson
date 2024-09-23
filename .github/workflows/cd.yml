@@ -1,0 +1,34 @@
+name: cd
+
+on:
+  push:
+    branches: - main
+
+jobs:
+  cd:
+    name: cd
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Container registryに認証する
+        # run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        uses: docker/login-action@v3
+        with:
+          registry: ghrc.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Docker Buildを実行する
+      #   run: docker build -t ghcr.io/${{ github.repository }}:latest .
+      # - name: Docker Imageをプッシュする
+      #   run: docker push ghcr.io/${{ github.repository }}:latest
+      - name: Docker BuildとPushを実行する
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
